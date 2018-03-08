@@ -19,11 +19,13 @@
 void add_circle( struct matrix * points,
                  double cx, double cy, double cz,
                  double r, double step ) {
-  int t,x,y;
+  int t;
+  double x, y, z;
   for(t=0;t<100;t+=(step*100)){
     x = /*stuff*/;
     y = /*stuff*/;
-    add_point(x,y,points);      
+    z = 0;
+    add_point(x,y,z,points);      
   }
 }
 
