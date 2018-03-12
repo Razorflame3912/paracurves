@@ -113,6 +113,12 @@ void parse_file ( char * filename,
     else if(!strcmp(line,"circle")){
       argstatus = 6;
     }
+    else if(!strcmp(line,"hermite")){
+      argstatus = 7;
+    }
+    else if(!strcmp(line,"bezier")){
+      argstatus = 8;
+    }
     
     else{
       char * line2 = (char*)malloc(200);
@@ -179,6 +185,32 @@ void parse_file ( char * filename,
 		   atof(arr[2]),
 		   atof(arr[3]),
 		   0.01);
+	argstatus = 0;
+      }
+      else if(argstatus == 7){
+	add_curve(edges,
+		  atof(arr[0]),
+		  atof(arr[1]),
+		  atof(arr[2]),
+		  atof(arr[3]),
+		  atof(arr[4]),
+		  atof(arr[5]),
+		  atof(arr[6]),
+		  atof(arr[7]),
+		  0.01, HERMITE);
+	argstatus = 0;
+      }
+      else if(argstatus == 8){
+	add_curve(edges,
+		  atof(arr[0]),
+		  atof(arr[1]),
+		  atof(arr[2]),
+		  atof(arr[3]),
+		  atof(arr[4]),
+		  atof(arr[5]),
+		  atof(arr[6]),
+		  atof(arr[7]),
+		  0.01, BEZIER);
 	argstatus = 0;
       }
       else{
