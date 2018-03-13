@@ -121,9 +121,9 @@ void parse_file ( char * filename,
     }
     
     else{
-      char * line2 = (char*)malloc(200);
+      char * line2 = (char*)malloc(500);
       char * line3 = strcpy(line2, line);
-      char ** arr = (char**)malloc(6 * sizeof(char*));
+      char ** arr = (char**)malloc(10 * sizeof(char*));
       int i = 0;
       while(line3){
 	arr[i] = strsep(&line3," ");

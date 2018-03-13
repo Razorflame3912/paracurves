@@ -63,6 +63,44 @@ void add_curve( struct matrix *points,
                 double x2, double y2, 
                 double x3, double y3, 
                 double step, int type ) {
+  struct matrix * xcoefs;
+  struct matrix * ycoefs;
+  xcoefs = generate_curve_coefs(x0,x1,x2,x3,type);
+  ycoefs = generate_curve_coefs(y0,y1,y2,y3,type);
+  print_matrix(xcoefs);
+  print_matrix(ycoefs);
+
+
+  double xa,xb,xc,xd,ya,yb,yc,yd;
+  xa = xcoefs->m[0][0];
+  xb = xcoefs->m[1][0];
+  xc = xcoefs->m[2][0];
+  xd = xcoefs->m[3][0];
+
+  ya = ycoefs->m[0][0];
+  yb = ycoefs->m[1][0];
+  yc = ycoefs->m[2][0];
+  yd = ycoefs->m[3][0];
+  int t;
+
+  x0 = xd;
+  y1 = yd;
+
+  for(t=0;t<100;t+=(int)(step*100)){
+
+    x1 = x0;
+    y1 = y0;
+    x0 = (xa * pow(t/100.0,3))
+      + (xb * pow(t/100.0,2))
+      + (xc * (t/100.0)) + (xd);
+    y0 = (ya * pow(t/100.0,3))
+      + (yb * pow(t/100.0,2))
+      + (yc * (t/100.0)) + (yd);
+    
+    add_edge(points,x0,y0,0,x1,y1,0);
+  }
+  
+  
 }
 
 
